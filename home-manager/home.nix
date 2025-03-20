@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -73,4 +73,45 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
+  imports = [
+    inputs.illogical-impulse.homeManagerModules.default
+    # ./shell.nix
+  ];
+
+  # BigSaltyFishes End-4 Dotfiles Setup=================
+  illogical-impulse = {
+    # Enable Dotfiles
+    enable = true;
+    hyprland = {
+      # Monitor preference
+      monitor = [ ",preferred,auto,1" ];
+      # Use cusomize hyprland packages
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      xdgPortalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      # Set NIXOS_OZONE_WL=1
+      ozoneWayland.enable = true;
+    };
+    theme = {
+      # Customize Cursors,
+      # the following config is the default config
+      # if you don't set.
+      cursor = {
+        package = pkgs.bibata-cursors;
+        theme = "Bibata-Modern-Ice";
+      };
+    };
+    # Use custom ags package, the following package is the default.
+    # agsPackage = ags.packages.${pkgs.system}.default.override {
+    #   extraPackages = with pkgs; [ 
+    #     gtksourceview
+    #     gtksourceview4
+    #     webkitgtk
+    #     webp-pixbuf-loader
+    #     ydotool
+    #   ];
+    # };
+  };
+  # ====================================================
 }

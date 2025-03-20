@@ -84,6 +84,16 @@ menuentry "Arch Linux, with Linux linux (fallback initramfs)" --class arch --cla
   # Set your time zone.
   time.timeZone = "Asia/Dhaka";
 
+  # fcitx5 for OpenBangla Keyboard
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-gtk
+      fcitx5-openbangla-keyboard
+    ];
+  };
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -100,6 +110,7 @@ menuentry "Arch Linux, with Linux linux (fallback initramfs)" --class arch --cla
   };
 
   # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
@@ -160,6 +171,23 @@ menuentry "Arch Linux, with Linux linux (fallback initramfs)" --class arch --cla
   #  wget
   ];
 
+  # Some fonts are needed for OpenBangla Keyboard
+  fonts.packages = with pkgs; [
+    noto-fonts
+    # noto-fonts-cjk
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    # (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+  fonts.enableDefaultPackages = false;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -189,5 +217,14 @@ menuentry "Arch Linux, with Linux linux (fallback initramfs)" --class arch --cla
 
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  
+  # Enable hyprland
+  programs.hyprland = {
+    enable = true;
+  };
+
+  # For BigSaltyFishes End-4 Dotfiles===============
+  services.udisks2.enable = true;
+  # ================================================
 
 }
