@@ -17,7 +17,59 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.devices = [ "nodev" ];
   boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
+
+  # ========================== Fix for Grub not detecting Arch Linux ==========================
+  # boot.loader.grub.useOSProber = true;
+  boot.loader.grub.extraEntries = ''
+menuentry "Arch Linux" --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-cfbd4a9d-5fb7-44b9-9176-b4e4050cc7de' {
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root 18BC-49D5
+	echo	'Loading Linux linux ...'
+	linux	/vmlinuz-linux root=UUID=cfbd4a9d-5fb7-44b9-9176-b4e4050cc7de rw  loglevel=3 quiet
+	echo	'Loading initial ramdisk ...'
+	initrd	/intel-ucode.img /initramfs-linux.img
+}
+### END /etc/grub.d/43_linux_proxy ###
+
+### BEGIN /etc/grub.d/44_os-prober ###
+menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os $menuentry_id_option 'osprober-efi-908A-8084' {
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root 908A-8084
+	chainloader /efi/Microsoft/Boot/bootmgfw.efi
+}
+### END /etc/grub.d/44_os-prober ###
+
+### BEGIN /etc/grub.d/45_linux_proxy ###
+submenu "Advanced options for Arch Linux"{
+menuentry "Arch Linux, with Linux linux" --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-advanced-cfbd4a9d-5fb7-44b9-9176-b4e4050cc7de' {
+		set gfxpayload=keep
+		insmod gzio
+		insmod part_gpt
+		insmod fat
+		search --no-floppy --fs-uuid --set=root 18BC-49D5
+		echo	'Loading Linux linux ...'
+		linux	/vmlinuz-linux root=UUID=cfbd4a9d-5fb7-44b9-9176-b4e4050cc7de rw  loglevel=3 quiet
+		echo	'Loading initial ramdisk ...'
+		initrd	/intel-ucode.img /initramfs-linux.img
+}
+menuentry "Arch Linux, with Linux linux (fallback initramfs)" --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-fallback-cfbd4a9d-5fb7-44b9-9176-b4e4050cc7de' {
+		set gfxpayload=keep
+		insmod gzio
+		insmod part_gpt
+		insmod fat
+		search --no-floppy --fs-uuid --set=root 18BC-49D5
+		echo	'Loading Linux linux ...'
+		linux	/vmlinuz-linux root=UUID=cfbd4a9d-5fb7-44b9-9176-b4e4050cc7de rw  loglevel=3 quiet
+		echo	'Loading initial ramdisk ...'
+		initrd	/intel-ucode.img /initramfs-linux-fallback.img
+}
+}
+  '';
+  # ========================== Fix for Grub not detecting Arch Linux ==========================
 
   networking.hostName = "Lappy"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
