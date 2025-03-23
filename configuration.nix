@@ -165,10 +165,13 @@ menuentry "Arch Linux, with Linux linux (fallback initramfs)" --class arch --cla
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
+    google-chrome
+    neofetch
+    telegram-desktop
     tmux
-    vscode
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    vscode
+    wget
   ];
 
   # Some fonts are needed for OpenBangla Keyboard
