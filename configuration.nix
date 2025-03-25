@@ -168,6 +168,7 @@ menuentry "Arch Linux, with Linux linux (fallback initramfs)" --class arch --cla
     google-chrome
     neofetch
     sl
+    spotify
     telegram-desktop
     tmux
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
