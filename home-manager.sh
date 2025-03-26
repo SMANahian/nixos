@@ -1,3 +1,3 @@
 #!/bin/bash
 
-home-manager switch -b backup --flake .
+home-manager switch -b backup --flake . --impure

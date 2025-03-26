@@ -461,15 +461,16 @@
       "locked": {
         "lastModified": 1742944695,
         "narHash": "sha256-wna8f237woZ+0ELOp2w48vVAm6ZJHY+V8z3wBW+mPa8=",
-        "ref": "refs/heads/dev",
+        "owner": "SMANahian",
+        "repo": "end-4-dots",
         "rev": "1aaf67a68fec07a51c0863b34a16acbc388fcf3e",
-        "revCount": 25,
-        "type": "git",
-        "url": "file:///home/smanahian/GitHub/end-4-dots"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/smanahian/GitHub/end-4-dots"
+        "owner": "SMANahian",
+        "ref": "dev",
+        "repo": "end-4-dots",
+        "type": "github"
       }
     },
     "nixpkgs": {
