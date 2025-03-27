@@ -459,18 +459,17 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1742944695,
-        "narHash": "sha256-wna8f237woZ+0ELOp2w48vVAm6ZJHY+V8z3wBW+mPa8=",
-        "owner": "SMANahian",
-        "repo": "end-4-dots",
-        "rev": "1aaf67a68fec07a51c0863b34a16acbc388fcf3e",
-        "type": "github"
+        "lastModified": 1743064060,
+        "narHash": "sha256-CeGvnw1YgieeBAPFeRza8MDTHVMoI7vXEXGQVDRUkVI=",
+        "ref": "refs/heads/dev",
+        "rev": "45d0f60ee3e247a0cd1d2fe5c67082f50ea30c74",
+        "revCount": 27,
+        "type": "git",
+        "url": "file:///home/smanahian/GitHub/end-4-dots"
       },
       "original": {
-        "owner": "SMANahian",
-        "ref": "dev",
-        "repo": "end-4-dots",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/smanahian/GitHub/end-4-dots"
       }
     },
     "nixpkgs": {
